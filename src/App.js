@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector } from 'react-redux';
+import CreateUser from './Components/Users/CreateUser';
+import ViewUser from './Components/Users/ViewUser'
+import UpdateUser from './Components/Users/UpdateUser';
 
 function App() {
+
+  const { isEdit } = useSelector(state => state.UserReducer)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {
+        isEdit
+          ?
+          <UpdateUser />
+          :
+          <CreateUser />
+      }
+      <ViewUser />
+    </>
+  )
 }
 
 export default App;
